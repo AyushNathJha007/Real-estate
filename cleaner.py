@@ -127,6 +127,7 @@ for x in df3:
     if ((x> Q3 + 1.5 * IQR ) or (x<Q1 - 1.5 * IQR )):
          outlier.append(x)
 print(' outlier length  is', len(outlier))
+print(outlier)
 
 
 ######################################################################################
@@ -134,8 +135,9 @@ print(' outlier length  is', len(outlier))
 sample = pd.DataFrame(outlier, columns=['Price'])
 print(sample)
 
-df2.drop(df2['Price'][(df3>Q3 + 1.5 * IQR) or df3<Q1 - 1.5 * IQR].index, inplace=True)
+df2=df2[df2.Price<outlier[0]] #Drop all rows where price<outlier's minimum value
 print(df2.shape)
+print(df2.Price)
 #############################################################################################
 
 #plotting correlation graph
